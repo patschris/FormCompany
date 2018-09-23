@@ -12,9 +12,9 @@
             $db_hostname = "localhost";		
             $db_name = "mycompany";	
             $db_user = "root";		
-            $db_pass = "";			
+            $db_pass = "root";			
             $link = mysqli_connect($db_hostname, $db_user, $db_pass, $db_name) or die("Unable to connect to database");
-            $query = 'SELECT E.emp_id, E.first_name, E.last_name, E.hire_date, D.dept_name, AVG(S.salary) AS Average
+            $query = 'SELECT E.emp_id, E.first_name, E.last_name, E.hire_date, D.dept_name, FORMAT(AVG(S.salary),2) AS Average
                     FROM 
                         employee AS E
                         INNER JOIN salary AS S ON E.emp_id = S.emp_id
@@ -36,7 +36,7 @@
             $results = mysqli_query($link,$query) or die('Query failed');
             if (mysqli_num_rows($results) > 0) {
                 $html .= '<BR/> <b> AΠΟΤΕΛΕΣΜΑΤΑ: </b> <BR/><BR/>
-                            <TABLE cellpadding="0" cellspacing="0" border="2" width="700" bgcolor="#EEF6FA">
+                            <TABLE cellpadding="0" cellspacing="0" border="2" width="900" bgcolor="#EEF6FA">
                             <TR>
                                 <TD bgcolor="#F0F0F0"> Employee id </TD> 
                                 <TD bgcolor="#F0F0F0"> First Name </TD> 
@@ -64,6 +64,6 @@
             print $html;
         }
     ?>
-    <BR/> Για επιστροφή στην αρχική φόρμα, πατήστε <a href="index.php"> εδώ </a>.
+    <BR/> Για επιστροφή στην αρχική φόρμα, πατήστε <a href="index.php">εδώ</a>.
 </BODY>
 </HTML>
